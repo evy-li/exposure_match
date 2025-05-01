@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+:root {
+  /* Nord Base Colors */
+  --nord-polar-night-darkest: #2E3440;
+  --nord-polar-night-darker: #3B4252;
+  --nord-polar-night-dark: #434C5E;
+  --nord-polar-night-light: #4C566A;
+  --nord-snow-storm-lightest: #ECEFF4;
+  --nord-snow-storm-lighter: #E5E9F0;
+  --nord-snow-storm-light: #D8DEE9;
+
+  /* Nord Aurora Colors */
+  --nord-aurora-red: #BF616A;
+  --nord-aurora-orange: #D08770;
+  --nord-aurora-yellow: #EBCB8B;
+  --nord-aurora-green: #A3BE8C;
+  --nord-aurora-blue: #81A1C1;
+  --nord-aurora-purple: #B48EAD;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Light mode (Nord theme) */
+body {
+  font-family: "Inter", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--nord-snow-storm-lightest);
+  color: var(--nord-polar-night-darkest);
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.app-container {
+  width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
+  max-height: 100vh;
+  aspect-ratio: 9/16;
+  background: var(--nord-snow-storm-lighter);
+  color: var(--nord-polar-night-darkest);
+  box-shadow: none;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 1.5rem 1rem 1rem 1rem;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin-bottom: 1.2rem;
+  color: var(--nord-polar-night-darkest);
+  text-align: center;
+}
+
+label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+  color: var(--nord-polar-night-light);
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 0.7rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--nord-snow-storm-light);
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  background: var(--nord-snow-storm-lightest);
+  color: var(--nord-polar-night-darkest);
+  overflow: hidden;
+}
+
+.slider-container {
+  width: 100%;
+  margin: 1.2rem 0 1.5rem 0;
+}
+
+.slider {
+  width: 100%;
+  accent-color: var(--nord-polar-night-light);
+  height: 2.5em;
+}
+
+#stopAmount, #ndOrGain {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  color: var(--nord-polar-night-light);
+  text-align: center;
+}
+
+p {
+  margin: 0.7rem 0;
+  font-size: 1rem;
+  color: var(--nord-polar-night-light);
+  text-align: center;
+}
+
+#baseShutterSpeed, #calculatedShutterSpeed, #closestShutterSpeed {
+  font-weight: 500;
+  color: var(--nord-polar-night-darkest);
+}
+
+.text-muted {
+  opacity: 0.5;
+}
+
+/* Desktop: center app in a 9:16 container */
+@media (min-width: 500px) and (min-aspect-ratio: 9/16) {
+  body {
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100vw;
+  }
+  .app-container {
+    width: 360px;
+    height: 640px;
+    max-width: 90vw;
+    max-height: 95vh;
+    margin: auto;
+    border-radius: 18px;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.10), 0 1.5px 6px rgba(0,0,0,0.08);
+    background: #fff;
+  }
+}
+
+/* For very small screens, reduce padding and font size */
+@media (max-width: 400px) {
+  .app-container {
+    padding: 0.7rem 0.3rem 0.5rem 0.3rem;
+  }
+  h1 {
+    font-size: 1.1rem;
+  }
+  input[type="number"], p, #stopAmount, #ndOrGain {
+    font-size: 0.95rem;
+  }
+}
+
+/* Theme toggle styles */
+.theme-toggle {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+.toggle-checkbox {
+  display: none;
+}
+
+.toggle-label {
+  width: 50px;
+  height: 25px;
+  background: var(--nord-polar-night-light);
+  border-radius: 25px;
+  position: relative;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.toggle-label::after {
+  content: '';
+  width: 21px;
+  height: 21px;
+  background: var(--nord-snow-storm-lightest);
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s ease;
+}
+
+.toggle-checkbox:checked + .toggle-label {
+  background: var(--nord-polar-night-light);
+}
+
+.toggle-checkbox:checked + .toggle-label::after {
+  transform: translateX(25px);
+}
+
+/* Dark mode (Nord theme) */
+body.dark-mode {
+  background-color: var(--nord-polar-night-darkest);
+  color: var(--nord-snow-storm-lightest);
+}
+
+body.dark-mode .app-container {
+  background: var(--nord-polar-night-darker);
+  color: var(--nord-snow-storm-lightest);
+}
+
+body.dark-mode input[type="number"] {
+  background: var(--nord-polar-night-dark);
+  border-color: var(--nord-polar-night-light);
+  color: var(--nord-snow-storm-lightest);
+}
+
+body.dark-mode .slider {
+  accent-color: var(--nord-snow-storm-light);
+}
+
+body.dark-mode h1 {
+  color: var(--nord-snow-storm-lightest);
+}
+
+body.dark-mode label {
+  color: var(--nord-snow-storm-light);
+}
+
+body.dark-mode p, body.dark-mode #stopAmount, body.dark-mode #ndOrGain {
+  color: var(--nord-snow-storm-light);
+}
+
+body.dark-mode #baseShutterSpeed, 
+body.dark-mode #calculatedShutterSpeed, 
+body.dark-mode #closestShutterSpeed {
+  color: var(--nord-snow-storm-lightest);
+}
+
+body.dark-mode .toggle-label {
+  background: var(--nord-aurora-blue);
+}
+
+body.dark-mode .toggle-label::after {
+  background: var(--nord-snow-storm-light);
+}
+
+body.dark-mode .app-container,
+body.dark-mode input[type="number"],
+body.dark-mode .slider,
+body.dark-mode h1,
+body.dark-mode label,
+body.dark-mode p,
+body.dark-mode #stopAmount,
+body.dark-mode #ndOrGain,
+body.dark-mode #baseShutterSpeed,
+body.dark-mode #calculatedShutterSpeed,
+body.dark-mode #closestShutterSpeed {
+  transition: background-color 250ms ease, color 250ms ease;
+}

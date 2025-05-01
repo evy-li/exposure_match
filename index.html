@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exposure Match</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="theme-toggle">
+    <input type="checkbox" id="themeToggle" class="toggle-checkbox">
+    <label for="themeToggle" class="toggle-label"></label>
+  </div>
+  <div class="app-container">
+    <h1>Exposure Match</h1>
+    <label for="fps">Frames Per Second (FPS):</label>
+    <input type="number" id="fps" placeholder="e.g., 24" min="1" step="1" inputmode="numeric">
+    <br>
+    <label for="shutterAngle">Shutter Angle (degrees):</label>
+    <input type="number" id="shutterAngle" placeholder="e.g., 180" min="1" max="360" step="0.01" inputmode="decimal">
+    <p class="text-muted">Base Shutter Speed: <span id="baseShutterSpeed"></span></p>
+    <br><br>
+    <div id="stopAmount">Stops: 0 (0 whole stops, 0 third stops)</div>
+    <div id="ndOrGain"></div>
+    <div class="slider-container">
+      <input type="range" id="stopSlider" class="slider" min="-21" max="21" value="0" step="1"
+        aria-valuemin="-21" aria-valuemax="21" aria-valuenow="0" aria-label="Exposure stops slider">
+    </div>
+
+    <p>Shutter Speed: <span id="closestShutterSpeed"></span></p>
+    <p class="text-muted">Calculated Speed: <span id="calculatedShutterSpeed"></span></p>
+    <br>
+  </div>
+  <script src="js/script.js"></script>
+</body>
+</html>
