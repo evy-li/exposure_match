@@ -1,36 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exposure Match</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <title>Exposure</title>
+  <link rel="stylesheet" href="css/stylesheet.css">
 </head>
-<body>
-  <div class="theme-toggle">
-    <input type="checkbox" id="themeToggle" class="toggle-checkbox">
-    <label for="themeToggle" class="toggle-label"></label>
-  </div>
-  <div class="app-container">
-    <h1>Exposure Match</h1>
-    <label for="fps">Frames Per Second (FPS):</label>
-    <input type="number" id="fps" placeholder="e.g., 24" min="1" step="1" inputmode="numeric">
-    <br>
-    <label for="shutterAngle">Shutter Angle (degrees):</label>
-    <input type="number" id="shutterAngle" placeholder="e.g., 180" min="1" max="360" step="0.01" inputmode="decimal">
-    <p class="text-muted">Base Shutter Speed: <span id="baseShutterSpeed"></span></p>
-    <br><br>
-    <div id="stopAmount">Stops: 0 (0 whole stops, 0 third stops)</div>
-    <div id="ndOrGain"></div>
-    <div class="slider-container">
-      <input type="range" id="stopSlider" class="slider" min="-21" max="21" value="0" step="1"
-        aria-valuemin="-21" aria-valuemax="21" aria-valuenow="0" aria-label="Exposure stops slider">
-    </div>
 
-    <p>Shutter Speed: <span id="closestShutterSpeed"></span></p>
+<body>
+  <div class="app-container">
+    <div class="settings">
+      <label for="fps">Dark Mode</label>
+      <input type="checkbox" id="themeToggle" class="toggle-checkbox">
+      <label for="themeToggle" class="toggle-label"></label>
+      <label for="fps">Persistent Values</label>
+      <input type="checkbox" id="storageToggle" class="toggle-checkbox">
+      <label for="storageToggle" class="toggle-label"></label>
+    </div>
+    <hr class="nord-divider">
+    <label for="iso">Motion Camera ISO:</label>
+    <div class="input-group">
+      <input type="number" id="iso" placeholder="e.g., 100" min="25" max="128000" step="1" inputmode="numeric">
+      <button id="setIsoButton">Set</button>
+    </div>
+    <br>
+    <label for="fps">Motion Camera FPS:</label>
+    <div class="input-group">
+      <input type="number" id="fps" placeholder="e.g., 24" min="1" step="1" inputmode="numeric">
+      <button id="setFpsButton">Set</button>
+    </div>
+    <br>
+    <label for="shutterAngle">Motion Camera Shutter Angle (degrees):</label>
+    <div class="input-group">
+      <input type="number" id="shutterAngle" placeholder="e.g., 180" min="1" max="360" step="0.01" inputmode="decimal">
+      <button id="setShutterAngleButton">Set</button>
+      <button id="matchShutterAngleButton">Match</button>
+    </div>
+    <p class="text-muted">Base Shutter Speed: <span id="baseShutterSpeed"></span></p>
+    <hr class="nord-divider"><!-- Added horizontal dividing line -->
+    <br>
+    <label for="stopSlider">Exposure compensation:</label>
+    <div class="slider-container">
+      <input type="range" id="stopSlider" class="slider" min="-27" max="27" value="0" step="1" aria-valuemin="-27"
+        aria-valuemax="27" aria-valuenow="0" aria-label="Exposure stops slider">
+    </div>
+    <br>
+    <div id="stopAmount">Stops: 0</div>
+    <div class="text-muted" id="stopDetails">(0 whole stops, 0 third stops)</div>
+    <div id="ndOrGain"></div>
+    <p><h2>Shutter Speed: <span id="closestShutterSpeed"></span></h2></p>
     <p class="text-muted">Calculated Speed: <span id="calculatedShutterSpeed"></span></p>
     <br>
   </div>
-  <script src="js/script.js"></script>
+  <div id="errorModal" class="modal">
+    <div class="modal-content">
+      <p id="errorMessage"></p>
+      <button id="closeModal">OK</button>
+    </div>
+  </div>
+  <script src="js/app.js" type="module"></script>
 </body>
+
 </html>
