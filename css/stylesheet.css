@@ -87,17 +87,37 @@ label, .theme-label {
   white-space: nowrap; /* Prevent text wrapping */
 }
 
+label[for="stopSlider"] {
+  width: 100%;
+  font-size: 1rem;
+  color: var(--nord-polar-night-light);
+  margin-bottom: 0.5rem;
+  box-sizing: border-box;
+}
+
 input[type="number"] {
   width: 100%;
   height: 100%;
   padding-left: 1rem;
-  border: 1px solid var(--nord-snow-storm-light);
+  border: 0.1em solid var(--nord-snow-storm-light);
   border-radius: 0.5rem;
   font-size: 1rem;
   box-sizing: border-box;
   background: var(--nord-snow-storm-lightest);
   color: var(--nord-polar-night-darkest);
   overflow: hidden;
+}
+
+input[type="number"].synced {
+  border-color: var(--nord-aurora-green);
+  border-width: 0.1em; /* Ensure consistent thickness */
+  transition: border-color 200ms ease;
+}
+
+input[type="number"].out-of-sync {
+  border-color: var(--nord-aurora-red);
+  border-width: 0.1em; /* Ensure consistent thickness */
+  transition: border-color 200ms ease;
 }
 
 .slider-container {

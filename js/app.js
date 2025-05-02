@@ -280,3 +280,60 @@ initializeState();
 
 updateShutterSpeed();
 updateSliderAria();
+
+function markInputSyncState(input, isSynced) {
+  if (isSynced) {
+    input.classList.add('synced');
+    input.classList.remove('out-of-sync');
+  } else {
+    input.classList.add('out-of-sync');
+    input.classList.remove('synced');
+  }
+}
+
+function validateAndSetInput(input, variable, min, max, defaultValue) {
+  const value = parseFloat(input.value);
+  if (isNaN(value) || value < min || value > max) {
+    showError(`Value must be between ${min} and ${max}.`, input, defaultValue);
+    markInputSyncState(input, false);
+    return false;
+  }
+  if (value !== variable) {
+    markInputSyncState(input, false);
+  } else {
+    markInputSyncState(input, true);
+  }
+  return true;
+}
+
+// Update ISO input handling
+setIsoButton.addEventListener('click', () => {
+  if (validateAndSetInput(isoInput, parseFloat(isoInput.value), 12, 128000, 100)) {
+    console.log(`ISO set to: ${isoInput.value}`); // Debugging
+    markInputSyncState(isoInput, true);
+    saveState(); // Save state after ISO change
+  }
+});
+
+// Update FPS input handling
+setFpsButton.addEventListener('click', () => {
+  if (validateAndSetInput(fpsInput, parseFloat(fpsInput.value), 1, 1000, 24)) {
+    updateShutterSpeed();
+    markInputSyncState(fpsInput, true);
+  }
+});
+
+// Update Shutter Angle input handling
+setShutterAngleButton.addEventListener('click', () => {
+  if (validateAndSetInput(shutterAngleInput, parseFloat(shutterAngleInput.value), 1, 360, 172.8)) {
+    updateShutterSpeed();
+    markInputSyncState(shutterAngleInput, true);
+  }
+});
+
+// Add input event listeners to detect out-of-sync state
+[fpsInput, shutterAngleInput, isoInput].forEach(input => {
+  input.addEventListener('input', () => {
+    markInputSyncState(input, false);
+  });
+});

@@ -40,13 +40,15 @@
     <p class="text-muted">Base Shutter Speed: <span id="baseShutterSpeed"></span></p>
     <hr class="nord-divider"><!-- Added horizontal dividing line -->
     <br>
-    <label for="stopSlider">Exposure compensation:</label>
+    <label for="stopSlider" style="display: flex; justify-content: space-between; align-items: center;">
+      <span>Exposure compensation:</span>
+      <span id="stopAmount">Stops: 0</span>
+    </label>
     <div class="slider-container">
       <input type="range" id="stopSlider" class="slider" min="-27" max="27" value="0" step="1" aria-valuemin="-27"
         aria-valuemax="27" aria-valuenow="0" aria-label="Exposure stops slider">
     </div>
     <br>
-    <div id="stopAmount">Stops: 0</div>
     <div class="text-muted" id="stopDetails">(0 whole stops, 0 third stops)</div>
     <div id="ndOrGain"></div>
     <p><h2>Shutter Speed: <span id="closestShutterSpeed"></span></h2></p>
