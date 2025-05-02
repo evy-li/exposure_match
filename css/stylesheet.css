@@ -1,3 +1,4 @@
+@import url('reset.css');
 @import url('https://cdnfonts.com/sf-mono.font');
 
 :root {
@@ -64,6 +65,12 @@ body {
 h1 {
   font-size: 1.5rem;
   margin-bottom: 3rem;
+  color: var(--nord-polar-night-darkest);
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.5rem;
   color: var(--nord-polar-night-darkest);
   text-align: center;
 }
